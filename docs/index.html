@@ -2,11 +2,11 @@
 <html lang="ru">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f6f5f0"><meta name="description" content="Расписание пар по верхним и нижним неделям и условия получения автоматов."><title>Пары и автоматы</title><link rel="stylesheet" href="style.css"><script src="data.js" defer></script><script src="app.js" defer></script></head>
 <body>
-<header class="top"><a class="brand" href="#">пары<span> / </span>автоматы</a><span class="top-note">Студенческий справочник</span></header>
+<header class="top"><a class="brand" href="#">пары<span> / </span>автоматы</a></header>
 <main>
-<section class="intro"><div><p class="eyebrow">Всё нужное на семестр</p><h1>Что сегодня?<br><span>И как получить автомат.</span></h1><p class="lead">Расписание, посещаемость и задания — в одном месте.</p></div><a href="#conditions" class="jump">Условия по предметам <span>↗</span></a></section>
-<section aria-labelledby="schedule-title"><div class="section-heading"><h2 id="schedule-title">Расписание <span class="small">01</span></h2><div class="week-nav"><button data-shift="-1" aria-label="Предыдущая неделя">←</button><button id="today-button">Сегодня</button><button data-shift="1" aria-label="Следующая неделя">→</button></div></div><h3 id="week-title" aria-live="polite"></h3><p class="hint" id="week-hint"></p><div id="schedule" class="calendar-grid" role="group" aria-label="Даты недели"></div><div id="date-detail" aria-live="polite"></div><noscript>Включите JavaScript, чтобы увидеть расписание и условия.</noscript></section>
-<aside class="notice"><span class="notice-icon">i</span><div><strong>Держим в уме</strong><p>Время Python может меняться. Расписание английского пока уточняется. Каникулы, отмены и переносы не учтены; пустая дата не гарантирует свободный день.</p></div></aside>
-<section id="conditions" aria-labelledby="conditions-title"><div class="section-heading"><h2 id="conditions-title">Как получить автомат <span class="small">02</span></h2><span class="hint">Нажмите на предмет</span></div><div id="subjects"></div></section>
-<footer><span>По заметке «Расписание и условия получения автоматов»</span><span>Обновлено 3 октября 2026</span><p>Рабочие записи студентов. Неясные условия отмечены в карточках; изменения уточняйте у преподавателей и в LMS.</p></footer>
+<section class="intro"><div><h1>Что сегодня?<br><span>И как получить автомат.</span></h1></div><a href="#conditions" class="jump">Условия по предметам <span>↗</span></a></section>
+<section aria-labelledby="schedule-title"><div class="section-heading"><h2 id="schedule-title">Расписание</h2><div class="week-nav"><button data-shift="-1" aria-label="Предыдущая неделя">←</button><button id="today-button">Сегодня</button><button data-shift="1" aria-label="Следующая неделя">→</button></div></div><h3 id="week-title" aria-live="polite"></h3><p class="hint" id="week-hint"></p><div id="schedule" class="calendar-grid" role="group" aria-label="Даты недели"></div><div id="date-detail" aria-live="polite"></div><noscript>Включите JavaScript, чтобы увидеть расписание и условия.</noscript></section>
+
+<section id="conditions" aria-labelledby="conditions-title"><div class="section-heading"><h2 id="conditions-title">Как получить автомат</h2></div><div id="subjects"></div></section>
+
 </main></body></html>

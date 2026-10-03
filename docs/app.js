@@ -30,7 +30,7 @@ function openSubject(id) {
 function renderDay(focus=false) {
  const type=weekType(weekStart);
  const entries=dayLessons(selectedDate);
- document.getElementById('date-detail').innerHTML=`<div class="date-heading"><div><p class="eyebrow">${dayNames[(selectedDate.getDay()+6)%7]}${sameDate(selectedDate,today)?' · сегодня':''}</p><h3 tabindex="-1" id="selected-heading">${dateFormat.format(selectedDate)}</h3></div><span class="hint">${entries.length?'Нажмите на пару — откроются условия':''}</span></div>${entries.length?entries.map(lesson=>{const subject=subjects.find(s=>s.id===lesson.id);return `<button class="lesson" data-subject="${subject.id}"><span class="time">${lesson.time}</span><span class="lesson-main"><strong>${subject.short}</strong><span>${lesson.note}${!type&&lesson.week!=='both'?` · только ${lesson.week==='upper'?'верхняя':'нижняя'} неделя`:''}</span></span><span class="place">${subject.place}</span><span class="arrow" aria-hidden="true">↗</span></button>`;}).join(''):'<p class="empty-day">В заметке нет занятий на этот день.</p>'}`;
+ document.getElementById('date-detail').innerHTML=`<div class="date-heading"><div><p class="eyebrow">${dayNames[(selectedDate.getDay()+6)%7]}${sameDate(selectedDate,today)?' · сегодня':''}</p><h3 tabindex="-1" id="selected-heading">${dateFormat.format(selectedDate)}</h3></div></div>${entries.length?entries.map(lesson=>{const subject=subjects.find(s=>s.id===lesson.id);return `<button class="lesson" data-subject="${subject.id}"><span class="time">${lesson.time}</span><span class="lesson-main"><strong>${subject.short}</strong><span>${lesson.note}${!type&&lesson.week!=='both'?` · только ${lesson.week==='upper'?'верхняя':'нижняя'} неделя`:''}</span></span><span class="place">${subject.place}</span><span class="arrow" aria-hidden="true">↗</span></button>`;}).join(''):'<p class="empty-day">Занятий нет.</p>'}`;
  document.querySelectorAll('[data-subject]').forEach(button=>button.addEventListener('click',()=>openSubject(button.dataset.subject)));
  if(focus) document.getElementById('selected-heading').focus({preventScroll:true});
 }
@@ -38,7 +38,7 @@ function renderWeek() {
  const type=weekType(weekStart);
  const end=addDays(weekStart,6);
  document.getElementById('week-title').textContent=`${dateFormat.format(weekStart)} — ${dateFormat.format(end)} ${end.getFullYear()}`;
- document.getElementById('week-hint').textContent=type?`${weekLabel(type)} неделя · расписание по записям семестра`:'Чередование пока не подтверждено: показаны возможные пары с пометками верхней и нижней недели.';
+ document.getElementById('week-hint').textContent=type?`${weekLabel(type)} неделя`:'Чередование пока не подтверждено: показаны возможные пары с пометками верхней и нижней недели.';
  document.getElementById('today-button').disabled=sameDate(weekStart,monday(today))&&sameDate(selectedDate,today);
  document.getElementById('schedule').innerHTML=Array.from({length:7},(_,index)=>{
  const date=addDays(weekStart,index),entries=dayLessons(date);
@@ -47,7 +47,7 @@ function renderWeek() {
  document.querySelectorAll('[data-day]').forEach(button=>button.addEventListener('click',()=>{selectedDate=addDays(weekStart,Number(button.dataset.day));renderWeek();document.querySelector(`[data-day="${button.dataset.day}"]`).focus();}));
  renderDay();
 }
-document.getElementById('subjects').innerHTML=subjects.map((subject,index)=>`<details id="${subject.id}"><summary><span class="subject-number">${String(index+1).padStart(2,'0')}</span><span>${subject.name}</span><span class="plus" aria-hidden="true">+</span></summary><div class="rules"><ul>${subject.rules.map(rule=>`<li>${rule}</li>`).join('')}</ul>${subject.file?`<a class="download" href="${subject.file}" download>Скачать задания Python · ZIP ↗</a>`:''}</div></details>`).join('');
+document.getElementById('subjects').innerHTML=subjects.map(subject=>`<details id="${subject.id}"><summary><span>${subject.name}</span><span class="plus" aria-hidden="true">+</span></summary><div class="rules"><ul>${subject.rules.map(rule=>`<li>${rule}</li>`).join('')}</ul>${subject.file?`<a class="download" href="${subject.file}" download>Скачать задания Python · ZIP ↗</a>`:''}</div></details>`).join('');
 document.querySelectorAll('[data-shift]').forEach(button=>button.addEventListener('click',()=>{const shift=Number(button.dataset.shift)*7;weekStart=addDays(weekStart,shift);selectedDate=addDays(selectedDate,shift);renderWeek();}));
 document.getElementById('today-button').addEventListener('click',()=>{weekStart=monday(today);selectedDate=today;renderWeek();});
 renderWeek();
